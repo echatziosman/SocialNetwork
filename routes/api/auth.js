@@ -24,6 +24,7 @@ router.get('/', auth, async (req, res) => {
 //@desc     Authenticate User & get token
 //@access   Public
 
+// Login Islemi
 router.post(
   '/',
   body('email', 'Please include a valid email').isEmail(),
@@ -61,7 +62,7 @@ router.post(
       jwt.sign(
         payload,
         config.get('jwtSecret'),
-        { expiresIn: 360000 },
+        { expiresIn: 3600 },
         (err, token) => {
           if (err) throw err;
           res.json({ token });

@@ -11,6 +11,7 @@ const User = require('../../models/User');
 //@desc     Register User
 //@access   Public
 
+// Register Islemi
 router.post(
   '/',
   body('name', 'Name is required').not().isEmpty(),
@@ -27,7 +28,7 @@ router.post(
     const { name, email, password } = req.body;
 
     try {
-      //Kullanici var mi?
+      //Kullanici var mi? Böyle bir email var mı?
       let user = await User.findOne({ email });
       if (user) {
         return res
@@ -60,7 +61,7 @@ router.post(
       jwt.sign(
         payload,
         config.get('jwtSecret'),
-        { expiresIn: 360000 },
+        { expiresIn: 36000 },
         (err, token) => {
           if (err) throw err;
           res.json({ token });
